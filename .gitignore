@@ -90,6 +90,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+lib
 
 # Gatsby files
 .cache/
@@ -130,3 +131,8 @@ dist
 
 # IDE
 .idea
+
+#redis dump
+dump.rdb
+.env
+.DS_Store

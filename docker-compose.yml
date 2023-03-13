@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:6.2
+    restart: always
+    command: ['redis-server', '--bind', 'redis', '--port', '6379']
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 5s
+      timeout: 60s
+      retries: 5
+    ports:
+      - '6379:6379'
+  mongo:
+    container_name: mongo
+    image: mongo:6.0.4
+    restart: unless-stopped
+    volumes:
+      - './private/mongo_data:/var/lib/mongo'
+      - './mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: books
+    ports:
+      - "27017:27017"
+
+  # app:

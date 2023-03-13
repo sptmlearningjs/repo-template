@@ -13,7 +13,7 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   rules: {
-    '@typescript-eslint/comma-dangle': [2, 'always',],
-    '@typescript-eslint/semi': [2, 'always',],
+    "comma-dangle": [2, "always"],
+    "@typescript-eslint/comma-dangle": [2, "always"]
   },
 };
