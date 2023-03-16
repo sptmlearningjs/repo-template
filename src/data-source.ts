@@ -12,6 +12,10 @@ const MongoDataSource = new DataSource({
   type: 'mongodb',
   url: config.MONGODB_URI,
   useNewUrlParser: true,
+  synchronize: true,
+  useUnifiedTopology: true,
+  username: "booksuser",
+  password: "bookspassword",
   logging: true,
   database: 'books',
   ssl: false,
@@ -19,5 +23,6 @@ const MongoDataSource = new DataSource({
   migrations: [ `${_dirname}/migrations/*.ts`, ],
   subscribers: [],
 },);
+
 
 export { MongoDataSource as AppDataSource, };
