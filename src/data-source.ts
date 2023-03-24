@@ -14,6 +14,7 @@ const MongoDataSource = new DataSource({
   useNewUrlParser: true,
   synchronize: true,
   useUnifiedTopology: true,
+  port: 27018, // default still be 27017
   username: "booksuser",
   password: "bookspassword",
   logging: true,

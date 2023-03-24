@@ -19,6 +19,7 @@ services:
     container_name: mongo
     image: mongo:6.0.4
     restart: unless-stopped
+    network_mode: 'bridge'
     volumes:
       - './private/mongo_data:/var/lib/mongo'
       - './mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
@@ -27,6 +28,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
       MONGO_INITDB_DATABASE: books
     ports:
-      - "27017:27017"
+      - "27018:27017"
 
   # app:
