@@ -1,0 +1,4 @@
+interface IBook {
+}
+
+export { IBook };

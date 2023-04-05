@@ -1,20 +1,13 @@
-import { AppDataSource } from "../src/data-source.js"
-import { User } from "./entity/User.js"
+import fastify from 'fastify'
+import { bookRoutes } from "./routes/books";
 
-AppDataSource.initialize().then(async () => {
+const server = fastify({logger: true})
+server.register(bookRoutes)
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.age = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
-
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
-
-    console.log("Here you can setup and run express / fastify / any other framework.")
-
-}).catch(error => console.log(error))
+server.listen({ port: 8080 }, (err, address) => {
+    if (err) {
+        console.error(err);
+        process.exit(1);
+    }
+    console.log(`Started server at ${address}`);
+});

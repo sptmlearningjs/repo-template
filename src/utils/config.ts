@@ -3,6 +3,6 @@ dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-export default {
+export {
   MONGODB_URI,
 };
